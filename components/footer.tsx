@@ -43,14 +43,21 @@ export function Footer() {
               Subscribe to my newsletter for the latest articles and updates.
             </p>
             <form
-              onSubmit={(e) => {
-                e.preventDefault()
-              }}
+              action="https://formspree.io/f/meonvgjr"
+              method="POST"
+              target="_blank"
               className="flex gap-2"
             >
+              {/* Tell Formspree where to redirect after submission. Use absolute URL if you want
+                  the user to return to your live site (e.g. https://yourdomain.com). Using "/"
+                  will redirect to the root of the Formspree host if left relative; set an absolute
+                  URL for production. */}
+              <input type="hidden" name="_next" value="/" />
               <input
                 type="email"
+                name="email"
                 placeholder="your@email.com"
+                required
                 className="flex-1 px-3 py-2 rounded bg-background border border-border text-foreground placeholder-muted-foreground text-sm focus:outline-none focus:ring-2 focus:ring-accent"
               />
               <button
@@ -66,18 +73,7 @@ export function Footer() {
         {/* Divider */}
         <div className="border-t border-border pt-8">
           <div className="flex flex-col md:flex-row justify-between items-center gap-4 text-sm text-muted-foreground">
-            <p>&copy; {currentYear} All rights reserved. Built with Next.js and Tailwind CSS.</p>
-            <div className="flex gap-6">
-              <a href="#" className="hover:text-accent transition-colors">
-                Privacy
-              </a>
-              <a href="#" className="hover:text-accent transition-colors">
-                Terms
-              </a>
-              <a href="#" className="hover:text-accent transition-colors">
-                Sitemap
-              </a>
-            </div>
+            <p>&copy; {currentYear} All rights reserved.</p>
           </div>
         </div>
       </div>

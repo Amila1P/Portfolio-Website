@@ -11,6 +11,8 @@ export function ContactSection() {
     message: "",
   })
   const [submitted, setSubmitted] = useState(false)
+  const [errors, setErrors] = useState<string | null>(null)
+  const [sending, setSending] = useState(false)
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     setFormData({
@@ -19,13 +21,40 @@ export function ContactSection() {
     })
   }
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const FORMSPREE_ENDPOINT = "https://formspree.io/f/mzzoklro"
+
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
-    // Here you would typically send the form data to a server
-    console.log("Form submitted:", formData)
-    setSubmitted(true)
-    setTimeout(() => setSubmitted(false), 3000)
-    setFormData({ name: "", email: "", message: "" })
+    setErrors(null)
+    setSending(true)
+
+    try {
+      const res = await fetch(FORMSPREE_ENDPOINT, {
+        method: "POST",
+        headers: {
+          Accept: "application/json",
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          name: formData.name,
+          email: formData.email,
+          message: formData.message,
+        }),
+      })
+
+      if (res.ok) {
+        setSubmitted(true)
+        setFormData({ name: "", email: "", message: "" })
+        setTimeout(() => setSubmitted(false), 3000)
+      } else {
+        const data = await res.json().catch(() => ({}))
+        setErrors(data.error || "Failed to send message. Please try again later.")
+      }
+    } catch (err) {
+      setErrors("Network error. Please try again later.")
+    } finally {
+      setSending(false)
+    }
   }
 
   return (
@@ -41,63 +70,88 @@ export function ContactSection() {
           </p>
         </div>
 
-        <form onSubmit={handleSubmit} className="space-y-6">
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <div className="relative">
+          <form onSubmit={handleSubmit} className="space-y-6">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+              <div>
+                <label htmlFor="name" className="block text-sm font-medium text-foreground mb-2">
+                  Name
+                </label>
+                <input
+                  type="text"
+                  id="name"
+                  name="name"
+                  value={formData.name}
+                  onChange={handleChange}
+                  required
+                  className="w-full px-4 py-2 rounded-lg bg-card border border-border text-foreground placeholder-muted-foreground focus:outline-none focus:ring-2 focus:ring-accent transition-colors"
+                  placeholder="Your name"
+                />
+              </div>
+              <div>
+                <label htmlFor="email" className="block text-sm font-medium text-foreground mb-2">
+                  Email
+                </label>
+                <input
+                  type="email"
+                  id="email"
+                  name="email"
+                  value={formData.email}
+                  onChange={handleChange}
+                  required
+                  className="w-full px-4 py-2 rounded-lg bg-card border border-border text-foreground placeholder-muted-foreground focus:outline-none focus:ring-2 focus:ring-accent transition-colors"
+                  placeholder="your@email.com"
+                />
+              </div>
+            </div>
+
             <div>
-              <label htmlFor="name" className="block text-sm font-medium text-foreground mb-2">
-                Name
+              <label htmlFor="message" className="block text-sm font-medium text-foreground mb-2">
+                Message
               </label>
-              <input
-                type="text"
-                id="name"
-                name="name"
-                value={formData.name}
+              <textarea
+                id="message"
+                name="message"
+                value={formData.message}
                 onChange={handleChange}
                 required
-                className="w-full px-4 py-2 rounded-lg bg-card border border-border text-foreground placeholder-muted-foreground focus:outline-none focus:ring-2 focus:ring-accent transition-colors"
-                placeholder="Your name"
-              />
+                rows={5}
+                className="w-full px-4 py-2 rounded-lg bg-card border border-border text-foreground placeholder-muted-foreground focus:outline-none focus:ring-2 focus:ring-accent transition-colors resize-none"
+                placeholder="Tell me about your project..."
+              ></textarea>
             </div>
-            <div>
-              <label htmlFor="email" className="block text-sm font-medium text-foreground mb-2">
-                Email
-              </label>
-              <input
-                type="email"
-                id="email"
-                name="email"
-                value={formData.email}
-                onChange={handleChange}
-                required
-                className="w-full px-4 py-2 rounded-lg bg-card border border-border text-foreground placeholder-muted-foreground focus:outline-none focus:ring-2 focus:ring-accent transition-colors"
-                placeholder="your@email.com"
-              />
+
+            <div className="relative w-full">
+              <button
+                type="submit"
+                className="w-full px-6 py-3 bg-accent text-accent-foreground rounded-lg font-semibold hover:bg-accent/90 transition-colors duration-200"
+              >
+                {submitted ? "Message Sent!" : "Send Message"}
+              </button>
+
+              {/* Popup directly above the Send button */}
+              {submitted && (
+                <div className="absolute left-1/2 bottom-full -translate-x-1/2 -translate-y-2 w-auto">
+                  <div
+                    role="status"
+                    aria-live="polite"
+                    className="bg-emerald-500 text-white rounded-md shadow-lg px-5 py-2 font-medium"
+                  >
+                    Thank you! Your message has been successfully.
+                  </div>
+                </div>
+              )}
+
+              {errors && (
+                <div className="absolute left-1/2 bottom-full -translate-x-1/2 -translate-y-2 w-auto">
+                  <div role="alert" className="bg-red-600 text-white rounded-md shadow-lg px-5 py-2 font-medium">
+                    {errors}
+                  </div>
+                </div>
+              )}
             </div>
-          </div>
-
-          <div>
-            <label htmlFor="message" className="block text-sm font-medium text-foreground mb-2">
-              Message
-            </label>
-            <textarea
-              id="message"
-              name="message"
-              value={formData.message}
-              onChange={handleChange}
-              required
-              rows={5}
-              className="w-full px-4 py-2 rounded-lg bg-card border border-border text-foreground placeholder-muted-foreground focus:outline-none focus:ring-2 focus:ring-accent transition-colors resize-none"
-              placeholder="Tell me about your project..."
-            ></textarea>
-          </div>
-
-          <button
-            type="submit"
-            className="w-full px-6 py-3 bg-accent text-accent-foreground rounded-lg font-semibold hover:bg-accent/90 transition-colors duration-200"
-          >
-            {submitted ? "Message Sent!" : "Send Message"}
-          </button>
-        </form>
+          </form>
+        </div>
 
         <div className="mt-16 pt-8 border-t border-border">
           <p className="text-center text-muted-foreground mb-6">Or reach out on social media</p>
@@ -130,6 +184,7 @@ export function ContactSection() {
           </div>
         </div>
       </div>
+      {/* toasts are shown inline above the send button inside the form */}
     </section>
   )
 }

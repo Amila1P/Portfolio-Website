@@ -4,6 +4,8 @@
   "private": true,
   "scripts": {
     "build": "next build",
+    "export": "powershell -ExecutionPolicy Bypass -File ./export.ps1",
+    "build:export": "npm run build && npm run export",
     "dev": "next dev",
     "lint": "eslint .",
     "start": "next start"

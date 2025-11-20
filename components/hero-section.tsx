@@ -36,9 +36,10 @@ export function HeroSection() {
     <section id="home" className="relative min-h-screen flex items-center justify-center pt-16 overflow-hidden">
       {/* Background decorative layers (no background image) */}
       <div className="absolute inset-0 -z-10">
-        <div className="absolute top-20 left-1/3 w-96 h-96 bg-accent/20 rounded-full blur-3xl opacity-20 animate-pulse"></div>
+        {/* repositioned soft shapes to frame the hero image */}
+        <div className="absolute top-8 left-8 w-80 h-80 bg-accent/15 rounded-full blur-3xl opacity-30 animate-pulse"></div>
         <div
-          className="absolute bottom-20 right-1/4 w-96 h-96 bg-accent/10 rounded-full blur-3xl opacity-10 animate-pulse"
+          className="absolute bottom-8 right-8 w-96 h-96 bg-accent/10 rounded-full blur-3xl opacity-20 animate-pulse"
           style={{ animationDelay: "0.5s" }}
         ></div>
       </div>
@@ -46,14 +47,14 @@ export function HeroSection() {
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-center">
         {/* Left side - Text content */}
         <div className="space-y-6 fade-in-up">
-          <h1 className="text-5xl sm:text-6xl lg:text-7xl font-bold leading-tight" style={{ color: "#E0E0E0" }}>
+          <h1 className="text-5xl sm:text-6xl lg:text-7xl font-bold leading-tight text-foreground dark:text-[#E0E0E0]">
             AMILA PATHUM
           </h1>
 
           <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold leading-tight">
             <span className="text-accent">I'm a</span>{" "}
             <span className="relative inline-block">
-              <span 
+              <span
                 className="bg-gradient-to-r from-[#39ff14] via-[#ff00ff] to-[#39ff14] bg-clip-text text-transparent"
                 style={{
                   backgroundSize: "200% auto",
@@ -90,13 +91,14 @@ export function HeroSection() {
         {/* Right side - Hero Image */}
         <div className="relative fade-in-up" style={{ animationDelay: "0.2s" }}>
           <div className="relative group">
-            <div className="absolute inset-0 bg-gradient-to-r from-accent/20 to-accent/10 rounded-3xl blur-2xl group-hover:blur-3xl transition-all duration-500 opacity-0 group-hover:opacity-100"></div>
+            <div className="absolute inset-0 bg-gradient-to-r from-accent/20 to-accent/10 rounded-3xl blur-2xl group-hover:blur-3xl transition-all duration-500 opacity-30 group-hover:opacity-60"></div>
             <img
-              src="/assets/images/hero sec_back.png"
-              alt="Developer working on code"
+              src="/assets/images/Hero_section_image.jpg"
+              alt="Hero image"
               className="relative w-full rounded-3xl border-2 border-accent/20 group-hover:border-accent/50 transition-all duration-300 object-cover shadow-2xl group-hover:shadow-accent/20 hover:shadow-2xl"
+              style={{ objectPosition: 'center right' }}
             />
-            <div className="absolute inset-0 rounded-3xl bg-gradient-to-t from-accent/20 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-all duration-300"></div>
+            <div className="absolute inset-0 rounded-3xl bg-gradient-to-t from-accent/20 via-transparent to-transparent opacity-20 group-hover:opacity-60 transition-all duration-300"></div>
           </div>
         </div>
       </div>
