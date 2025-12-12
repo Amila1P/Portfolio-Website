@@ -3,45 +3,13 @@
 export function ProjectsSection() {
   const projects = [
     {
-      title: "E-Commerce Platform",
+      title: "Personal Portfolio: Next.js & UI/UX",
       description:
-        "A full-stack e-commerce solution with real-time inventory management, payment processing, and admin dashboard.",
-      tags: ["Next.js", "React", "TypeScript", "Stripe", "PostgreSQL"],
-      link: "#",
-    },
-    {
-      title: "Task Management App",
-      description:
-        "Collaborative task management tool with real-time updates, user authentication, and team workspaces.",
-      tags: ["React", "Firebase", "Tailwind CSS", "WebSocket"],
-      link: "#",
-    },
-    {
-      title: "Analytics Dashboard",
-      description:
-        "Data visualization dashboard with interactive charts, real-time metrics, and custom reporting features.",
-      tags: ["Next.js", "Recharts", "Node.js", "MongoDB"],
-      link: "#",
-    },
-    {
-      title: "Mobile App Backend",
-      description:
-        "RESTful API backend for a mobile application with authentication, file uploads, and third-party integrations.",
-      tags: ["Node.js", "Express", "PostgreSQL", "AWS S3"],
-      link: "#",
-    },
-    {
-      title: "Design System",
-      description: "Comprehensive component library and design system with documentation and Storybook integration.",
-      tags: ["React", "TypeScript", "Storybook", "CSS-in-JS"],
-      link: "#",
-    },
-    {
-      title: "AI Content Generator",
-      description:
-        "Web application leveraging AI APIs to generate and optimize content with user preferences and history.",
-      tags: ["Next.js", "OpenAI", "Supabase", "React Query"],
-      link: "#",
+        "This project serves as my professional hub, built with a focus on modern development best practices. The UI is styled with Tailwind CSS, ensuring a fast, responsive, and maintainable user experience.",
+      tags: ["Next.js", "React", "TypeScript", "Tailwind CSS"],
+      image: "/assets/images/projects/portfolio_image.png",
+      demoLink: "https://radiant-smakager-0a50ad.netlify.app",
+      codeLink: "https://github.com/Amila1P/Portfolio-Website.git",
     },
   ]
 
@@ -60,30 +28,52 @@ export function ProjectsSection() {
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           {projects.map((project, index) => (
-            <a
+            <div
               key={project.title}
-              href={project.link}
-              className="group bg-card rounded-xl p-6 border border-border hover:border-accent transition-all duration-300 hover:shadow-lg hover:shadow-accent/10 cursor-pointer fade-in-up"
+              className="group bg-card rounded-xl overflow-hidden border border-border hover:border-accent transition-all duration-300 hover:shadow-lg hover:shadow-accent/10 fade-in-up"
               style={{ animationDelay: `${index * 0.05}s` }}
             >
-              <h3 className="text-xl font-semibold text-foreground mb-2 group-hover:text-accent transition-colors">
-                {project.title}
-              </h3>
-              <p className="text-muted-foreground mb-4 line-clamp-2">{project.description}</p>
-              <div className="flex flex-wrap gap-2">
-                {project.tags.map((tag) => (
-                  <span key={tag} className="px-3 py-1 rounded-full text-xs font-medium bg-accent/10 text-accent">
-                    {tag}
-                  </span>
-                ))}
+              {project.image && (
+                <div className="relative h-48 overflow-hidden">
+                  <img
+                    src={project.image}
+                    alt={project.title}
+                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                  />
+                </div>
+              )}
+              <div className="p-6">
+                <h3 className="text-xl font-semibold text-foreground mb-2 group-hover:text-accent transition-colors">
+                  {project.title}
+                </h3>
+                <p className="text-muted-foreground mb-4">{project.description}</p>
+                <div className="flex flex-wrap gap-2 mb-4">
+                  {project.tags.map((tag) => (
+                    <span key={tag} className="px-3 py-1 rounded-full text-xs font-medium bg-accent/10 text-accent">
+                      {tag}
+                    </span>
+                  ))}
+                </div>
+                <div className="flex gap-3">
+                  <a
+                    href={project.demoLink}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="flex-1 inline-flex items-center justify-center px-4 py-2 rounded-lg bg-accent text-accent-foreground hover:bg-accent/90 transition-colors text-sm font-medium"
+                  >
+                    View Demo
+                  </a>
+                  <a
+                    href={project.codeLink}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="flex-1 inline-flex items-center justify-center px-4 py-2 rounded-lg border border-border hover:border-accent hover:bg-accent/10 transition-colors text-sm font-medium"
+                  >
+                    View Code
+                  </a>
+                </div>
               </div>
-              <div className="mt-4 flex items-center text-accent opacity-0 group-hover:opacity-100 transition-opacity">
-                <span className="text-sm font-medium">View Project</span>
-                <svg className="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7m0 0l-7 7m7-7H5" />
-                </svg>
-              </div>
-            </a>
+            </div>
           ))}
         </div>
       </div>
