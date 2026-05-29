@@ -19,17 +19,20 @@ A modern, responsive portfolio website built with Next.js, React, and TypeScript
 ## 🛠️ Tech Stack
 
 ### Core Technologies
-- **Next.js 16.0.0**: React framework with App Router
+
+- **Next.js ^16.0.10**: React framework with App Router
 - **React 19.2.0**: UI library
 - **TypeScript 5**: Type-safe development
 - **Tailwind CSS 4.1.9**: Utility-first CSS framework
 
 ### UI Components
+
 - **Radix UI**: Accessible component primitives
 - **shadcn/ui**: High-quality component library
 - **Lucide React**: Icon library
 
 ### Additional Libraries
+
 - **next-themes**: Theme management
 - **react-hook-form**: Form handling
 - **zod**: Schema validation
@@ -76,18 +79,20 @@ Portfolio/
 
 ### Prerequisites
 
-- Node.js 18+ 
+- Node.js 18+
 - npm, yarn, or pnpm
 
 ### Installation
 
 1. **Clone the repository**
+
    ```bash
-   git clone <repository-url>
+   git clone https://github.com/Amila1P/Portfolio-Website.git
    cd Portfolio
    ```
 
 2. **Install dependencies**
+
    ```bash
    npm install
    # or
@@ -97,6 +102,7 @@ Portfolio/
    ```
 
 3. **Run the development server**
+
    ```bash
    npm run dev
    # or
@@ -120,6 +126,7 @@ npm start
 Comprehensive documentation is available in the `documentation/` folder:
 
 ### Component Documentation
+
 - [About Section](./documentation/components/about-section.md)
 - [Articles Section](./documentation/components/articles-section.md)
 - [Certificates Section](./documentation/components/certificates-section.md)
@@ -134,11 +141,13 @@ Comprehensive documentation is available in the `documentation/` folder:
 - [Theme Provider](./documentation/components/theme-provider.md)
 
 ### Function Documentation
+
 - [use-mobile Hook](./documentation/functions/use-mobile.md) - Mobile detection hook
 - [use-toast Hook](./documentation/functions/use-toast.md) - Toast notification system
 - [cn Utility](./documentation/functions/cn-utility.md) - Class name utility function
 
 ### Operations Documentation
+
 - [Component Lifecycle](./documentation/operations/component-lifecycle.md) - How components work
 - [Navigation System](./documentation/operations/navigation-system.md) - Navigation implementation
 - [Form Handling](./documentation/operations/form-handling.md) - Form operations and validation
@@ -148,25 +157,31 @@ Comprehensive documentation is available in the `documentation/` folder:
 ### Updating Content
 
 #### Personal Information
+
 - Edit `components/hero-section.tsx` for hero content
 - Edit `components/about-section.tsx` for about content
 - Edit `components/details-section.tsx` for statistics
 
 #### Projects
+
 - Update the `projects` array in `components/projects-section.tsx`
 - Add project images to `public/` folder
 
 #### Certificates
+
 - Update the `certificates` array in `components/certificates-section.tsx`
 - Add certificate images to `public/assets/images/`
 
 #### Skills
+
 - Update the `skills` array in `components/expertise-section.tsx`
 
 #### Articles
+
 - Update the `articles` array in `components/articles-section.tsx`
 
 #### Social Links
+
 - Update GitHub link in `components/navigation.tsx`
 - Update social links in `components/contact-section.tsx` and `components/footer.tsx`
 
@@ -183,6 +198,8 @@ Theme configuration is handled by `next-themes`. Customize in `components/theme-
 - `npm run dev` - Start development server
 - `npm run build` - Build for production
 - `npm run start` - Start production server
+- `npm run export` - Export a static version of the site to the `out` directory (uses `export.ps1`)
+- `npm run build:export` - Build and then export a static version of the site (recommended for static hosting)
 - `npm run lint` - Run ESLint
 
 ## 📱 Sections
@@ -201,15 +218,19 @@ Theme configuration is handled by `next-themes`. Customize in `components/theme-
 ## 🎯 Key Features Explained
 
 ### Typewriter Animation
+
 The hero section features a typewriter effect that cycles through role titles (Full-Stack Developer, Web Developer). Implemented using `useState` and `useEffect` with timers.
 
 ### Scroll Animations
+
 Components use Intersection Observer API to trigger animations when they enter the viewport. Provides smooth, performant scroll-triggered animations.
 
 ### Responsive Navigation
+
 Fixed navigation bar with mobile hamburger menu. Smooth scrolling to sections using anchor links.
 
 ### Form Handling
+
 Contact form uses controlled components with React state management. Includes validation and user feedback.
 
 ## 🔒 Security
@@ -226,9 +247,15 @@ Contact form uses controlled components with React state management. Includes va
 2. Import project in Vercel
 3. Deploy automatically
 
+### Static Export (GitHub Pages, Netlify, etc.)
+
+1. Run `npm run build:export` to generate the static site in the `out` directory
+2. Deploy the `out` directory to any static hosting provider (GitHub Pages, Netlify, Cloudflare Pages, etc.)
+
 ### Other Platforms
 
 The project can be deployed to any platform that supports Next.js:
+
 - Netlify
 - AWS Amplify
 - Railway
@@ -245,6 +272,7 @@ This project is private and personal. All rights reserved.
 ## 👤 Author
 
 **Amila Pathum**
+
 - GitHub: [@Amila1P](https://github.com/Amila1P)
 - Portfolio: [Your Portfolio URL]
 
@@ -259,6 +287,7 @@ This project is private and personal. All rights reserved.
 ## 📝 Changelog
 
 ### Version 0.1.0
+
 - Initial release
 - All core sections implemented
 - Responsive design
@@ -268,4 +297,3 @@ This project is private and personal. All rights reserved.
 ---
 
 **Built with ❤️ using Next.js and TypeScript**
-

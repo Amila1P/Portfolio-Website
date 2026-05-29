@@ -35,7 +35,7 @@ export function AboutSection() {
               <div className="absolute -inset-4 bg-gradient-to-r from-accent/25 to-accent/8 rounded-full blur-3xl opacity-20 group-hover:opacity-60 transition-all duration-500"></div>
               <div className="relative w-80 h-80 md:w-[32rem] md:h-[32rem] rounded-full overflow-hidden border-4 border-accent/20 group-hover:border-accent/60 transition-all duration-300 profile-photo">
                 <img
-                  src="/assets/images/AboutMe Image.jpg"
+                  src="/assets/images/About-Me-Pic.png"
                   alt="About me image"
                   className="w-full h-full object-cover"
                   style={{ objectPosition: 'center 15%' }}

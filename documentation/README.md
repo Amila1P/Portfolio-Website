@@ -92,5 +92,5 @@ All documentation follows these standards:
 
 ---
 
-**Last Updated**: Documentation created for Portfolio Website v0.1.0
+**Last Updated**: Updated for Portfolio Website v0.1.0 (static export & docs refresh, Dec 2025)
 
